@@ -1,13 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
+import { AppDispatch, RootState } from '../../store';
+import { fetchWeather } from '../../store/weatherSlice';
 import { icons } from '../../shared/icons';
 import './CityInput.scss';
 
 interface IProps {}
 
-const CityInput = (props: IProps) => {
+const CityInput = ({}: IProps) => {
+    const dispatch = useDispatch<AppDispatch>();
+    const weather = useSelector((state: RootState) => state.weather);
+
     const date = moment();
     const [city, setCity] = useState('Chernihiv');
+
+    const onSearch = () => {
+        dispatch(fetchWeather(city));
+    };
+
+    useEffect(() => {
+        console.log(weather);
+    }, [weather]);
 
     return (
         <div className="city-input">
@@ -21,7 +35,7 @@ const CityInput = (props: IProps) => {
                     city.length > 9 ? { width: `${city.length * 1.75}rem` } : {}
                 }
             />
-            <button className="city-input__btn">
+            <button className="city-input__btn" onClick={onSearch}>
                 <img src={icons.searchIcon} />
             </button>
 
