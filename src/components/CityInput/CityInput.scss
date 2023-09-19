@@ -1,0 +1,33 @@
+.city-input {
+    display: flex;
+    column-gap: 13px;
+    align-items: center;
+    position: relative;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.8);
+    &__input {
+        border: none;
+        background: none;
+        outline: none;
+        font-size: 48px;
+        font-weight: 700;
+        text-align: center;
+        width: 230px;
+    }
+    &__btn {
+        border: none;
+        background: none;
+        outline: none;
+        cursor: pointer;
+    }
+}
+
+.current-date__wrapper {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: calc(-100%);
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    text-align: center;
+}

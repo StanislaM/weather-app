@@ -1,9 +1,15 @@
+import CityInput from '../CityInput';
+import Container from '../Container';
 import './App.scss';
 
 const App = () => {
     return (
         <>
-            <div className="app">App</div>
+            <div className="app">
+                <Container>
+                    <CityInput />
+                </Container>
+            </div>
         </>
     );
 };
