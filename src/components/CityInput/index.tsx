@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import { AppDispatch, RootState } from '../../store';
@@ -6,22 +6,21 @@ import { fetchWeather } from '../../store/weatherSlice';
 import { icons } from '../../shared/icons';
 import './CityInput.scss';
 
-interface IProps {}
-
-const CityInput = ({}: IProps) => {
+const CityInput = () => {
     const dispatch = useDispatch<AppDispatch>();
-    const weather = useSelector((state: RootState) => state.weather);
 
-    const date = moment();
+    const date = useSelector((state: RootState) => {
+        if (state.weather.weather?.location.localtime) {
+            return moment(new Date(state.weather.weather.location.localtime));
+        } else {
+            return undefined;
+        }
+    });
     const [city, setCity] = useState('Chernihiv');
 
     const onSearch = () => {
         dispatch(fetchWeather(city));
     };
-
-    useEffect(() => {
-        console.log(weather);
-    }, [weather]);
 
     return (
         <div className="city-input">
@@ -36,19 +35,23 @@ const CityInput = ({}: IProps) => {
                 }
             />
             <button className="city-input__btn" onClick={onSearch}>
-                <img src={icons.searchIcon} />
+                <img src={icons.searchIcon.src} />
             </button>
 
             {/* DATE AND TIME */}
-            <div className="current-date__wrapper">
-                <div className="current-date__date">
-                    {date.format('DD.MM.YYYY')}
-                    <br />
-                    {date.format('dddd')}
-                </div>
+            {date && (
+                <div className="current-date__wrapper">
+                    <div className="current-date__date">
+                        {date.format('DD.MM.YYYY')}
+                        <br />
+                        {date.format('dddd')}
+                    </div>
 
-                <div className="current-date__time">{date.format('HH:mm')}</div>
-            </div>
+                    <div className="current-date__time">
+                        {date.format('HH:mm')}
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

@@ -1,7 +1,11 @@
 .container {
+    min-height: 610px;
     padding: 25px 125px;
     border-radius: 40px;
     border: 5px solid #FFF;
     background: rgba(255, 255, 255, 0.19);
     backdrop-filter: blur(40px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

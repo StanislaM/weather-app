@@ -6,3 +6,12 @@
     align-items: center;
     background: linear-gradient(117deg, #FCDDBC -2.01%, #B8D8BA 102.5%);
 }
+
+.select-city, .error {
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    img {
+        width: 40px;
+    }
+}

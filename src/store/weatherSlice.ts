@@ -3,16 +3,17 @@ import axios from 'axios';
 import { IWeatherData } from '../shared/types';
 
 const API_KEY = `9051a671de3e4758b5e201547231909`;
-const URL = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=`;
+const BASE_URL = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=`;
+const PARAMS = `&days=6&aqi=no&alerts=no`;
 
 interface IWeatherState {
-    weather: IWeatherData;
+    weather: IWeatherData | undefined;
     loading: 'idle' | 'pending' | 'succeeded' | 'failed';
     error: string | undefined;
 }
 
 const initialState: IWeatherState = {
-    weather: {},
+    weather: undefined,
     loading: 'idle',
     error: undefined,
 };
@@ -20,7 +21,7 @@ const initialState: IWeatherState = {
 export const fetchWeather = createAsyncThunk(
     'weather/fetchWeather',
     async (city: string) => {
-        const response = await axios.get(URL + city);
+        const response = await axios.get(BASE_URL + city + PARAMS);
         const data = await response.data;
         return data;
     }

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
 
 * {
     box-sizing: border-box;
@@ -6,4 +6,19 @@
     margin: 0;
     font-family: 'Inter', sans-serif;
     color: #65555C;
+}
+
+.temperature {
+    position: relative;
+    &::after {
+        content: '';
+        display: block;
+        width: 8px;
+        height: 8px;
+        border: 2px solid #65555C;
+        border-radius: 100%;
+        position: absolute;
+        top: 5px;
+        right: -9px;
+    }
 }
