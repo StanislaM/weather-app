@@ -21,7 +21,7 @@ const initialState: IWeatherState = {
 export const fetchWeather = createAsyncThunk(
     'weather/fetchWeather',
     async (city: string) => {
-        const response = await axios.get(BASE_URL + city + PARAMS);
+        const response = await axios.post(BASE_URL + city + PARAMS);
         const data = await response.data;
         return data;
     }
