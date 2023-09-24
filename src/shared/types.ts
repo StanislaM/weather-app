@@ -13,6 +13,13 @@ export interface ICurrent {
 
 export interface IHour {
     chance_of_rain: number;
+    temp_c: number;
+    condition: {
+        text: string;
+        icon: string;
+        code: number;
+    };
+    is_day: 1 | 0;
 }
 
 export interface IForecastDay {

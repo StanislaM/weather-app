@@ -6,6 +6,7 @@ import { IWeatherData } from '../../shared/types';
 import { useWeatherIcon } from '../../hooks/useWeatherIcon';
 import './DisplayCurrentWeather.scss';
 import AdditionalInfo from './AdditionalInfo';
+import NextWeather from './NextWeather';
 
 const DisplayCurrentWeather = () => {
     const weather: IWeatherData = useSelector(
@@ -13,8 +14,40 @@ const DisplayCurrentWeather = () => {
     ) as IWeatherData;
     const icon = useWeatherIcon(
         weather.current.condition.code,
-        weather.current.condition.icon
+        weather.current.condition.icon,
+        weather.current.is_day
     );
+
+    const isNextDay =
+        new Date(weather.location.localtime).getHours() === 23 ? true : false;
+    const nextWeatherInfo = {
+        temperature:
+            weather.forecast.forecastday[isNextDay ? 1 : 0].hour[
+                isNextDay
+                    ? 0
+                    : new Date(weather.location.localtime).getHours() + 1
+            ].temp_c,
+        time: isNextDay
+            ? '00:00'
+            : `${new Date(weather.location.localtime).getHours() + 1}:00`,
+        icon: useWeatherIcon(
+            isNextDay
+                ? weather.forecast.forecastday[1].hour[0].condition.code
+                : weather.forecast.forecastday[0].hour[
+                      new Date(weather.location.localtime).getHours() + 1
+                  ].condition.code,
+            isNextDay
+                ? weather.forecast.forecastday[1].hour[0].condition.icon
+                : weather.forecast.forecastday[0].hour[
+                      new Date(weather.location.localtime).getHours() + 1
+                  ].condition.icon,
+            isNextDay
+                ? weather.forecast.forecastday[1].hour[0].is_day
+                : weather.forecast.forecastday[0].hour[
+                      new Date(weather.location.localtime).getHours() + 1
+                  ].is_day
+        ),
+    };
 
     return (
         <div className="display-current-weather">
@@ -35,6 +68,12 @@ const DisplayCurrentWeather = () => {
                 minTemp={weather.forecast.forecastday[0].day.mintemp_c}
                 conditions={weather.current.condition.text}
                 icon={icon}
+            />
+
+            <NextWeather
+                temperature={nextWeatherInfo.temperature}
+                time={nextWeatherInfo.time}
+                icon={nextWeatherInfo.icon}
             />
         </div>
     );

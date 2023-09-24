@@ -37,6 +37,12 @@ const CurrentWeather = ({
                 </h3>
             </div>
             <p className="current-weather__conditions">{conditions}</p>
+
+            <img
+                src={icons.nextArrowsIcon.src}
+                alt="next-arrows-icon"
+                className="next-weather-icon"
+            />
         </div>
     );
 };
