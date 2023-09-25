@@ -38,3 +38,9 @@ export interface IWeatherData {
     current: ICurrent;
     forecast: { forecastday: IForecastDay[] };
 }
+
+export interface IIconData {
+    code: number;
+    icon: string;
+    isDay: 1 | 0;
+}
