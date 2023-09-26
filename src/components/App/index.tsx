@@ -6,6 +6,7 @@ import { RootState } from '../../store';
 import DisplayCurrentWeather from '../DisplayCurrentWeather';
 import { icons } from '../../shared/icons';
 import Spinner from '../Spinner';
+import Forecast from '../Forecast';
 
 const App = () => {
     const weatherLoadingStatus = useSelector(
@@ -36,7 +37,10 @@ const App = () => {
                     )}
 
                     {weatherLoadingStatus === 'succeeded' && (
-                        <DisplayCurrentWeather />
+                        <>
+                            <DisplayCurrentWeather />
+                            <Forecast />
+                        </>
                     )}
                 </Container>
             </div>

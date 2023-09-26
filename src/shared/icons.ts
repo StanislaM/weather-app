@@ -12,7 +12,11 @@ import LockLockedIcon from '../assets/icons/lock-locked-icon.svg';
 import NextArrowsIcon from '../assets/icons/next-arrows-icon.svg';
 
 import CloudyDayIcon from '../assets/icons/cloudy-day-icon.svg';
+import CloudyNightIcon from '../assets/icons/cloudy-night-icon.svg';
 import ClearNightIcon from '../assets/icons/clear-night-icon.svg';
+import SunnyDayIcon from '../assets/icons/sunny-day-icon.svg';
+import PartlyCloudyDayIcon from '../assets/icons/partly-cloudy-day-icon.svg';
+import PartlyCloudyNightIcon from '../assets/icons/partly-cloudy-night-icon.svg';
 
 export const icons = {
     searchIcon: {
@@ -81,9 +85,30 @@ export const icons = {
         isDay: 1,
         code: 1006,
     },
+    cloudyNightIcon: {
+        src: CloudyNightIcon,
+        isDay: 0,
+        code: 1006,
+    },
+
     clearNightIcon: {
         src: ClearNightIcon,
         isDay: 0,
         code: 1000,
+    },
+    sunnyDayIcon: {
+        src: SunnyDayIcon,
+        isDay: 1,
+        code: 1000,
+    },
+    partlyCloudyDayIcon: {
+        src: PartlyCloudyDayIcon,
+        isDay: 1,
+        code: 1003,
+    },
+    partlyCloudyNightIcon: {
+        src: PartlyCloudyNightIcon,
+        isDay: 0,
+        code: 1003,
     },
 };
