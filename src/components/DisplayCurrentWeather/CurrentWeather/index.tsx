@@ -1,3 +1,4 @@
+import useMediaQuery from '../../../hooks/useMediaQuery';
 import { icons } from '../../../shared/icons';
 import './CurrentWeather.scss';
 
@@ -16,6 +17,8 @@ const CurrentWeather = ({
     conditions,
     icon,
 }: IProps) => {
+    const isMobile = useMediaQuery('(max-width: 900px)');
+
     return (
         <div className="current-weather">
             <img
@@ -38,11 +41,13 @@ const CurrentWeather = ({
             </div>
             <p className="current-weather__conditions">{conditions}</p>
 
-            <img
-                src={icons.nextArrowsIcon.src}
-                alt="next-arrows-icon"
-                className="next-weather-icon"
-            />
+            {!isMobile && (
+                <img
+                    src={icons.nextArrowsIcon.src}
+                    alt="next-arrows-icon"
+                    className="next-weather-icon"
+                />
+            )}
         </div>
     );
 };

@@ -12,6 +12,7 @@ const App = () => {
     const weatherLoadingStatus = useSelector(
         (state: RootState) => state.weather.loading
     );
+    const errorMessage = useSelector((state: RootState) => state.weather.error);
 
     return (
         <>
@@ -31,7 +32,11 @@ const App = () => {
 
                     {weatherLoadingStatus === 'failed' && (
                         <h2 className="error">
-                            Something went wrong{' '}
+                            {(errorMessage ===
+                                'Request failed with status code 400' &&
+                                'City name is incorrect') ||
+                                'Something went wrong '}
+
                             <img src={icons.errorIcon.src} alt="error-icon" />
                         </h2>
                     )}

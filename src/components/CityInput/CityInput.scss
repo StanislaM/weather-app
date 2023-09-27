@@ -32,3 +32,9 @@
     font-size: 16px;
     text-align: center;
 }
+
+@media (max-width: 600px) {
+    .current-date__wrapper {
+        bottom: -45px;
+    }
+}

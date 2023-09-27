@@ -9,3 +9,9 @@
     padding-top: 30px;
     padding-bottom: 16px;
 }
+
+@media (max-width: 900px) {
+    .display-current-weather {
+        grid-template-columns: auto;
+    }
+}

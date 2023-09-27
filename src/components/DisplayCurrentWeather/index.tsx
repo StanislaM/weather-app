@@ -10,6 +10,7 @@ import AdditionalInfo from './AdditionalInfo';
 import NextWeather from './NextWeather';
 import addWeatherInfoParser from '../../utils/addWeatherInfoParser';
 import nextWeatherParser from '../../utils/nextWeatherParser';
+import useMediaQuery from '../../hooks/useMediaQuery';
 
 const DisplayCurrentWeather = () => {
     const weather: IWeatherData = useSelector(
@@ -33,14 +34,18 @@ const DisplayCurrentWeather = () => {
         nextWeatherIconData.isDay
     );
 
+    const isMobile = useMediaQuery('(max-width: 900px)');
+
     return (
         <div className="display-current-weather">
-            <AdditionalInfo
-                wind={addWeatherInfo.wind}
-                feelsLike={addWeatherInfo.feelsLike}
-                pressure={addWeatherInfo.pressure}
-                chanceOfRain={addWeatherInfo.chanceOfRain}
-            />
+            {!isMobile && (
+                <AdditionalInfo
+                    wind={addWeatherInfo.wind}
+                    feelsLike={addWeatherInfo.feelsLike}
+                    pressure={addWeatherInfo.pressure}
+                    chanceOfRain={addWeatherInfo.chanceOfRain}
+                />
+            )}
 
             <CurrentWeather
                 temperature={currentWeatherData.temperature}
@@ -49,12 +54,13 @@ const DisplayCurrentWeather = () => {
                 conditions={currentWeatherData.conditions}
                 icon={currentWeatherIcon}
             />
-
-            <NextWeather
-                temperature={nextWeatherData.temperature}
-                time={nextWeatherData.time}
-                icon={nextWeatherIcon}
-            />
+            {!isMobile && (
+                <NextWeather
+                    temperature={nextWeatherData.temperature}
+                    time={nextWeatherData.time}
+                    icon={nextWeatherIcon}
+                />
+            )}
         </div>
     );
 };
