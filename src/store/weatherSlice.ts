@@ -3,7 +3,7 @@ import axios from 'axios';
 import { IWeatherData } from '../shared/types';
 
 const API_KEY = `9051a671de3e4758b5e201547231909`;
-const BASE_URL = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=`;
+const BASE_URL = `//api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=`;
 const PARAMS = `&days=6&aqi=no&alerts=no`;
 
 interface IWeatherState {
